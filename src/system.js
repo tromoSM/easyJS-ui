@@ -1,3 +1,21 @@
+/*
+Copyright 2026 tromoSM
+https://github.com/tromoSM/easyJS-ui
+src/system.js as src/system.js
+v1 src
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
 window.refresh$$ico=function(){
     document.querySelectorAll("icon").forEach(dih=>{
     let temp$$ic$$data=dih.getAttribute("i").toLowerCase()
@@ -6,7 +24,9 @@ window.refresh$$ico=function(){
     }
     })
 }
-
+function sleep(dih){
+        return new Promise(resolve=>setTimeout(resolve,dih))
+}
 window.addEventListener("DOMContentLoaded",function(){
 
     window.errorr= function(t){    
@@ -34,7 +54,7 @@ window.addEventListener("DOMContentLoaded",function(){
 
        refresh$$ico()
     }
-    window.loader=function(dihh,dih){
+    window.loader=async function(dihh,dih){
       if(dih.toLowerCase()=="s"){
         let temp$$el$$not=document.createElement(`notify`)
         let temp$$el$$spi=document.createElement('div')
@@ -53,13 +73,14 @@ window.addEventListener("DOMContentLoaded",function(){
     }
     else{
         if(temp$$$active$$r){
+            temp$$$active$$r.style.transition='0.3s'
+            temp$$$active$$r.style.transform='scale(0.8)'
+            temp$$$active$$r.style.opacity='0'
+            await sleep(300)
             temp$$$active$$r.remove()
             temp$$$active$$r=null
         }
     }
-    }
-    function sleep(dih){
-        return new Promise(resolve=>setTimeout(resolve,dih))
     }
     window.success=async function(dihh){//must await users cro
         let temp$$el$$not=document.createElement(`notify`)
@@ -70,7 +91,7 @@ window.addEventListener("DOMContentLoaded",function(){
             renderer:"svg",
             loop:false,
             autoplay:true,
-            path: "/static/sys-checkmark.json"
+            path: ".././assets/ui/sys-checkmark.json"
         })
         let temp$$el$$ms=document.createElement("message")
         temp$$el$$ms.innerHTML=dihh
@@ -93,7 +114,7 @@ window.addEventListener("DOMContentLoaded",function(){
             renderer:"svg",
             loop:false,
             autoplay:true,
-            path: "/static/sys-fail.json"
+            path: "../../assets/ui/sys-fail.json"
         })
         let temp$$el$$ms=document.createElement("message")
         temp$$el$$ms.innerHTML=dihh
